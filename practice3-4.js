@@ -47,13 +47,13 @@ function Cat(name, foodAmount) {
     };
 }
 var fluffy = new Cat('Fluffy');
-fluffy.stroke().stroke().stroke();
+
 
 console.log(fluffy.name);
 
 
 console.log(fluffy.dailyNorm(300));
 console.log(fluffy.animalFeed());
-
+fluffy.stroke().stroke().stroke().feed();
 
 fluffy = null;
