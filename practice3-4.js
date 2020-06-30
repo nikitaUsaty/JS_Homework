@@ -7,24 +7,20 @@ function Animal(name, foodAmount) {
         return foodAmount + 'гр.'
     }
 
+
     this.dailyNorm = function (amount) {
 
-        if (!arguments.length) return foodAmount;
+        if (!arguments.length) return formatFoodAmount();
         if (amount < 50 || amount > 500) {
             throw new Error('ошибка');
         }
         foodAmount = amount;
     }
-
+    var self = this;
     this.feed = function () {
         console.log('Насыпаем в миску ' + this.dailyNorm() + ' корма.');
     };
 
-    var self = this;
-
-    this.animalFeed = function () {
-        return self.feed();
-    };
 }
 
 function Cat(name, foodAmount) {
@@ -35,15 +31,19 @@ function Cat(name, foodAmount) {
         return foodAmount + 'гр.'
     }
 
-    var chain = this;
-    chain.feed = function () {
-        console.log('Насыпать в миску' + ' ' + this.dailyNorm() + ' ' + 'корма')
-        console.log('Кот доволен ^_^')
-        return chain;
+
+    var animalFeed = this.feed;
+    this.feed = function () {
+        animalFeed.call(this);
+        this.added();
     }
-    chain.stroke = function () {
+
+    this.added = function () {
+        console.log('Кот доволен ^_^');
+    };
+
+    this.stroke = function () {
         console.log('Гладим кота.');
-        return chain;
     };
 }
 var fluffy = new Cat('Fluffy');
