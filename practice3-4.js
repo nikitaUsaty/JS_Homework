@@ -2,7 +2,7 @@ function Animal(name, foodAmount) {
     this.name = name;
 
     var foodAmount = 50;
-
+    var self = this;
     function formatFoodAmount() {
         return foodAmount + 'гр.'
     }
@@ -16,7 +16,7 @@ function Animal(name, foodAmount) {
         }
         foodAmount = amount;
     }
-    var self = this;
+
     this.feed = function () {
         console.log('Насыпаем в миску ' + this.dailyNorm() + ' корма.');
     };
@@ -25,12 +25,6 @@ function Animal(name, foodAmount) {
 
 function Cat(name, foodAmount) {
     Animal.apply(this, arguments);
-    var foodAmount = 50;
-
-    function formatFoodAmount() {
-        return foodAmount + 'гр.'
-    }
-
 
     var animalFeed = this.feed;
     this.feed = function () {
@@ -44,6 +38,7 @@ function Cat(name, foodAmount) {
 
     this.stroke = function () {
         console.log('Гладим кота.');
+        return this;
     };
 }
 var fluffy = new Cat('Fluffy');
@@ -53,7 +48,9 @@ console.log(fluffy.name);
 
 
 console.log(fluffy.dailyNorm(300));
-console.log(fluffy.animalFeed());
+
 fluffy.stroke().stroke().stroke().feed();
 
 fluffy = null;
+
+
