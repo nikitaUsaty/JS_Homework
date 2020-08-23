@@ -9,7 +9,7 @@ button.addEventListener('click', function () {
 });
 table.onclick = function () {
     var target = event.target;
-    if (target.tagName === 'TD' && !(target.classList.contains('addRow'))) {
+    if (target.tagName === 'TD' && !(target.classList.contains('td__add'))) {
         var input = target.innerHTML;
         target.innerHTML = '<input onblur = "ending(this)"/>';
         target.firstChild.value = input;
@@ -20,5 +20,4 @@ function ending(evt) {
     var value = evt.value;
     evt.parentNode.innerHTML = value;
 };
-
 
